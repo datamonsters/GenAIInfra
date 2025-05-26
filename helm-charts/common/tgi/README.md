@@ -7,14 +7,13 @@ Helm chart for deploying Hugging Face Text Generation Inference service.
 To install the chart, run the following:
 
 ```console
-cd GenAIInfra/helm-charts/common/tgi
+cd GenAIInfra/helm-charts/common
 export MODELDIR=/mnt/opea-models
 export MODELNAME="Intel/neural-chat-7b-v3-3"
 export HFTOKEN="insert-your-huggingface-token-here"
-helm dependency update
-helm install tgi . --set global.modelUseHostPath=${MODELDIR} --set LLM_MODEL_ID=${MODELNAME} --set global.HUGGINGFACEHUB_API_TOKEN=${HFTOKEN}
+helm install tgi tgi --set global.modelUseHostPath=${MODELDIR} --set LLM_MODEL_ID=${MODELNAME} --set global.HUGGINGFACEHUB_API_TOKEN=${HFTOKEN}
 # To deploy on Gaudi enabled kubernetes cluster
-# helm install tgi . --set global.modelUseHostPath=${MODELDIR} --set LLM_MODEL_ID=${MODELNAME} --set global.HUGGINGFACEHUB_API_TOKEN=${HFTOKEN} --values gaudi-values.yaml
+# helm install tgi tgi --set global.modelUseHostPath=${MODELDIR} --set LLM_MODEL_ID=${MODELNAME} --set global.HUGGINGFACEHUB_API_TOKEN=${HFTOKEN} --values gaudi-values.yaml
 ```
 
 By default, the tgi service will downloading the "Intel/neural-chat-7b-v3-3" which is about 54GB.
